@@ -1,11 +1,12 @@
+import General from '@/core/pages/users-profile-details/general'
 import React from 'react'
 
-function General() {
+function GeneralInfo() {
   return (
-    <div className='bg-red-500 '>
-      General
+    <div>
+      <General />
     </div>
   )
 }
 
-export default General
+export default GeneralInfo
