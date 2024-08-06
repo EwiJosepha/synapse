@@ -1,6 +1,6 @@
 import { Edit, Edit2 } from "lucide-react";
-import UserProfileLayout from "./usersProfile/layout";
-import pp  from "../../../public/mew pp.jpg"
+import UserProfileLayout from "./layout";
+import pp  from "../../../../public/mew pp.jpg"
 import Image from "next/image";
 
 export default function UsersProfile() {

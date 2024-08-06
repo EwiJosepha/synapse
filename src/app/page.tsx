@@ -1,4 +1,4 @@
-import UsersProfile from "./(users-profile)/page";
+import UsersProfile from "./(users-profile)/usersProfile/page";
 
 export default function Home() {
   return (

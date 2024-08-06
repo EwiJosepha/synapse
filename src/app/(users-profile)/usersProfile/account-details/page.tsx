@@ -3,9 +3,9 @@ import React from 'react'
 
 function AccDetails() {
   return (
-    <div>
-      <AccountDetails />
-    </div>
+
+    <AccountDetails />
+
   )
 }
 
