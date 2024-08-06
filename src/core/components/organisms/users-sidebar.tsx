@@ -1,4 +1,4 @@
-import { Bell, Database, HelpCircle, Key, Pen, SquareSquare, Video } from 'lucide-react'
+import { Bell, Database, HelpCircle, Key, MessageCircle, Pen, SquareSquare, Video } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -8,58 +8,58 @@ function UserSlideBar() {
     {
       icon: <SquareSquare />,
       text: "General",
-      href:"/usersProfile/general"
+      href: "/"
     },
     {
       icon: <Key />,
       text: "Account",
-      href:"/usersProfile/general"
+      href: "/usersProfile/general"
 
     },
     {
-      icon: <Video />,
-      text: "Video",
-      href:"/usersProfile/general"
+      icon: <MessageCircle />,
+      text: "Chats",
+      href: "/usersProfile/users-chats"
 
     },
     {
       icon: <Video />,
       text: "Video & Voice",
-      href:"/usersProfile/general"
+      href: "/usersProfile/general"
 
     },
     {
       icon: <Bell />,
       text: "Notifications",
-      href:"/usersProfile/general"
+      href: "/usersProfile/notifications"
 
     },
     {
       icon: <Pen />,
       text: "Personalization",
-      href:"/usersProfile/general"
+      href: "/usersProfile/general"
 
     },
     {
       icon: <Database />,
       text: "Storage",
-      href:"/usersProfile/general"
+      href: "/usersProfile/general"
 
     },
     {
       icon: <HelpCircle />,
       text: "Help",
-      href:"/usersProfile/general"
+      href: "/usersProfile/general"
     },
   ]
   return (
     <div>
-      <div className=' bg-gray-100 border-1 border rounded-l-lg mx-0'>
+      <div className=' bg-purple-500 border rounded-l-lg text-white shadow-lg'>
         <div className=" flex flex-col gap-4">
-          {arrayOfUsersAccount.map((iconsText,i) => (
-            <Link href={iconsText.href} className=" flex gap-4 hover:bg-gray-200  hover:rounded-md p-2 cursor-pointer" key={i} >
-                <p className='text-bold'>{iconsText.icon}</p>
-                <p>{iconsText.text}</p>
+          {arrayOfUsersAccount.map((iconsText, i) => (
+            <Link href={iconsText.href} className=" flex gap-4 hover:bg-gradient-to-r from-blue-500 via-pink-500 to-violet-500  hover:rounded-md p-2 cursor-pointer" key={i} >
+              <p className='text-bold'>{iconsText.icon}</p>
+              <p>{iconsText.text}</p>
             </Link>
           ))}
         </div>

@@ -7,9 +7,11 @@ interface UserProfileLayoutProps {
 const UserProfileLayout: React.FC<UserProfileLayoutProps> = ({ children }) => {
 
   return (
-    <div className="flex  w-96 bg-gradient-to-r from-blue-500 via-pink-500 to-violet-500">
-      <UserSlideBar />
-      <div className="flex-1">{children}</div>
+    <div className='w-[100%]'>
+      <div className="flex  w-[25%] bg-purple-500 rounded-lg ">
+        <UserSlideBar />
+        <div className="flex-1">{children}</div>
+      </div>
     </div>
   );
 };
