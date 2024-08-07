@@ -25,7 +25,7 @@ function UserSlideBar() {
     {
       icon: <Video />,
       text: "Video & Voice",
-      href: "/usersProfile/general"
+      href: "/usersProfile/videos-voice"
 
     },
     {
