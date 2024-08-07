@@ -54,7 +54,7 @@ function UserSlideBar() {
   ]
   return (
     <div>
-      <div className=' bg-purple-500 border-r rounded-l-lg text-white py-5'>
+      <div className=' bg-purple-500 border-r rounded-l-lg text-white py-5 px-4'>
         <div className=" flex flex-col md:gap-4 gap-2">
           {arrayOfUsersAccount.map((iconsText, i) => (
             <Link href={iconsText.href} className=" flex gap-2 md:gap-4 hover:bg-gradient-to-r from-blue-500 via-pink-500 to-violet-500  hover:rounded-md p-2 cursor-pointer" key={i} >
