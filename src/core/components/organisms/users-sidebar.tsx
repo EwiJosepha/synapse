@@ -43,7 +43,7 @@ function UserSlideBar() {
     {
       icon: <Database />,
       text: "Storage",
-      href: "/usersProfile/general"
+      href: "/usersProfile/storage"
 
     },
     {

@@ -19,6 +19,15 @@ function PersonalisedColors() {
     setColor(prevColor => prevColor === '#E10E50' ? 'white' : '#E10E50')
 
   }
+
+  function handleYellow () {
+setColor((prevcolor)=> prevcolor === "#CAE943" ? "white" : "#CAE943")
+  }
+
+  function handleCream () {
+    setColor((prevcolor)=> prevcolor === "#F6F4EF" ? "white" : "#F6F4EF")
+
+  }
   return (
     <div className='pl-4 flex flex-col gap-3'>
       <h1 className='md:text-sm  text-white pb-2 pt-5 pr-2'>Personalize your Wallpaper by clicking</h1>
@@ -34,6 +43,12 @@ function PersonalisedColors() {
         </button>
         <button style={{ background: "#2FD5C2" }} className='py-4 rounded-sm  text-white' onClick={handlegreen}>
          Green
+        </button>
+        <button style={{ background: "#CAE943" }} className='py-4 rounded-sm  text-white' onClick={handleYellow}>
+         Yellow
+        </button>
+        <button style={{ background: "#F6F4EF" }} className='py-4 rounded-sm  text-white' onClick={handleCream}>
+         Cream
         </button>
       </div>
       <div className='w-[90%] border-2 border-b-gray-500 grid h-28 bg-white' style={{background: color}}>
