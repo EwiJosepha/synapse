@@ -30,7 +30,7 @@ setColor((prevcolor)=> prevcolor === "#CAE943" ? "white" : "#CAE943")
   }
   return (
     <div className='pl-4 flex flex-col gap-3'>
-      <h1 className='md:text-sm  text-white pb-2 pt-5 pr-2'>Personalize your Wallpaper by clicking</h1>
+      <h1 className='md:text-sm  text-white pb-2 pt-5 pr-2'>Personalize your Wallpaper by clicking the div below will reflect your new Wallpaper</h1>
       <div className='w-[90%] bg-white border-2 border-b-gray-500 grid grid-cols-3 cursor-pointer gap-1 text-sm'>
         <button style={{ background: "#2563EB" }} className='py-4 rounded-sm text-white' onClick={handleBlue}>
           Blue
