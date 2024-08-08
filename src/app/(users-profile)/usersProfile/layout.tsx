@@ -1,4 +1,3 @@
-import UserSlideBar from '@/core/components/organisms/users-sidebar';
 import React, { ReactNode } from 'react';
 
 // interface UserProfileLayoutProps {
