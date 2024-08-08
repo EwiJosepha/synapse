@@ -11,7 +11,7 @@ function AccountDetails() {
         <div className='flex flex-col pt-4'>
 
           {accountContent.map((details,i) => (
-            <p className={`${i == 0?"text-pink-700 font-bold font-lg":"text-white"}`}>{details}</p>
+            <p className={`${i == 0?"text-pink-700 font-bold text-lg":"text-white"}`}>{details}</p>
           ))}
         </div>
         <div className='text-gray-600'>

@@ -1,11 +1,9 @@
 import { Edit, Edit2 } from "lucide-react";
-import UserProfileLayout from "./layout";
 import pp  from "../../../../public/mew pp.jpg"
 import Image from "next/image";
 
 export default function UsersProfile() {
   return (
-    <UserProfileLayout >
       <div className=" flex flex-col gap-4 pt-3">
        <h1 className="text-2xl text-center text-white">Profile Page</h1> 
         <div className="flex flex-col gap-4 border-b border-b-gray-400">
@@ -33,7 +31,6 @@ export default function UsersProfile() {
         </div>
       </div>
 
-    </UserProfileLayout>
 
   );
 }
