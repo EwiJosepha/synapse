@@ -53,7 +53,7 @@ const Sidebar = () => {
                         <h2 className="text-lg md:text-xl mb-2 md:mb-4 pt-4 font-bold">Chats</h2>
                         <div className="space-y-2 md:space-y-3">
                             {chats.map((chat) => (
-                                <div key={chat.id} className="flex items-center p-2 bg-purple-800 rounded hover:bg-gray-600 cursor-pointer">
+                                <div key={chat.id} className="flex items-center p-2 bg-purple-800 rounded hover:bg-purple-400 transition duration-200cursor-pointer">
                                     <img
                                         src={chat.avatar}
                                         alt={`${chat.name}'s avatar`}
