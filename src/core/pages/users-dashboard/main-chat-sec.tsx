@@ -16,7 +16,7 @@ const Main = () => {
             </div>
             <div className="mt-4">
                 <textarea
-                    className="w-full  border border-gray-300 rounded-full  placeholder:p-2 resize-none"
+                    className="w-[80%]  border border-gray-300 rounded-full  placeholder:p-2 resize-none"
                     rows={2}
                     placeholder="Type your message ..."
                 ></textarea>
