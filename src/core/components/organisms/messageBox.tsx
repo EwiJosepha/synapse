@@ -154,7 +154,7 @@ import { Message } from '@/lib/validations/messages';
 const MessageBox: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
-  const [newEmoji, setNewEmoji] = useState<string | null>(null);
+  const [newEmoji, setNewEmoji] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [showAttachmentOptions, setShowAttachmentOptions] = useState(false);
 
@@ -162,10 +162,10 @@ const MessageBox: React.FC = () => {
     if (newMessage.trim()) {
       setMessages([
         ...messages,
-        { id: messages.length, text: `${newMessage.trim()} ${newEmoji ?? ''}`, emoji: newEmoji },
+        { id: +messages.length, text: `${newMessage.trim()} ${newEmoji ?? ''}`, emoji: newEmoji },
       ]);
       setNewMessage('');
-      setNewEmoji(null);
+      setNewEmoji("");
     }
   };
 
