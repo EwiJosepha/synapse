@@ -2,9 +2,8 @@
 
 import React, { useRef } from 'react';
 import { File, Image, Video } from 'lucide-react';
-import uploads from '@/core/pages/api/uploads';
 
-const AttachmentOptions: React.FC = () => {
+const attachment: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const imageInputRef = useRef<HTMLInputElement | null>(null);
   const videoInputRef = useRef<HTMLInputElement | null>(null);
@@ -51,10 +50,12 @@ const AttachmentOptions: React.FC = () => {
     formData.append('type', type);
 
     try {
-      const response = await fetch('/pages/api/uploads', {
+      const response = await fetch('/api/uploads', {
         method: 'POST',
         body: formData,
       });
+
+console.log(response)
 
       if (!response.ok) {
         throw new Error('File upload failed');
@@ -123,4 +124,4 @@ const AttachmentOptions: React.FC = () => {
   );
 };
 
-export default AttachmentOptions;
+export default attachment;
