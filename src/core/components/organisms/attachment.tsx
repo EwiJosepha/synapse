@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import { File, Image, Video } from 'lucide-react';
 
-const attachment: React.FC = () => {
+const AttachmentOptions: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const imageInputRef = useRef<HTMLInputElement | null>(null);
   const videoInputRef = useRef<HTMLInputElement | null>(null);
@@ -31,15 +31,16 @@ const attachment: React.FC = () => {
     if (file) {
       console.log(`Selected ${type}:`, file);
 
-      const uploadedUrl = await uploadFile(file, type);
-
-      if (uploadedUrl) {
-        console.log(`${type} uploaded successfully: ${uploadedUrl}`);
-
-        // Add the uploaded file's URL to the chat
-        addFileToChat(uploadedUrl, type);
-      } else {
-        console.error(`Failed to upload ${type}`);
+      try {
+        const uploadedUrl = await uploadFile(file, type);
+        if (uploadedUrl) {
+          console.log(`${type} uploaded successfully: ${uploadedUrl}`);
+          addFileToChat(uploadedUrl, type);
+        } else {
+          console.error(`Failed to upload ${type}`);
+        }
+      } catch (error) {
+        console.error(`Error in handleFileChange:`, error);
       }
     }
   };
@@ -55,10 +56,11 @@ const attachment: React.FC = () => {
         body: formData,
       });
 
-      console.log(response)
+      console.log(response);
 
       if (!response.ok) {
-        throw new Error('File upload failed');
+        const errorText = await response.text();
+        throw new Error(`File upload failed: ${errorText}`);
       }
 
       const data = await response.json();
@@ -79,7 +81,7 @@ const attachment: React.FC = () => {
       } else if (type === 'video') {
         messageElement = `<video controls src="${url}" class="max-w-xs max-h-xs"></video>`;
       } else if (type === 'document') {
-        messageElement = `<a href="${url}" target="_blank" rel="noopener noreferrer">${File.name}</a>`;
+        messageElement = `<a href="${url}" target="_blank" rel="noopener noreferrer">Document</a>`;
       }
 
       chatContainer.innerHTML += `<div class="chat-message">${messageElement}</div>`;
@@ -124,4 +126,4 @@ const attachment: React.FC = () => {
   );
 };
 
-export default attachment;
+export default AttachmentOptions;
