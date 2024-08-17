@@ -1,17 +1,17 @@
 import { Phone } from 'lucide-react'
 import React from 'react'
 
+const accountContent = [
+  "About", "Everyone", "Add to groups", "Read receipts", "on"
+]
 function AccountDetails() {
-  const accountContent = [
-    "About", "Everyone", "Add to groups", "Read receipts", "on"
-  ]
   return (
     <div>
       <div className='flex flex-col gap-4 pl-4 pr-4 text-white'>
         <div className='flex flex-col pt-4'>
 
           {accountContent.map((details,i) => (
-            <p className={`${i == 0?"text-pink-700":"text-white"}`}>{details}</p>
+            <p className={`${i == 0?"text-pink-700 font-bold text-lg":"text-white"}`}>{details}</p>
           ))}
         </div>
         <div className='text-gray-600'>
