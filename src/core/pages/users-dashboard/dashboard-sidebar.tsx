@@ -53,13 +53,13 @@ const Sidebar = () => {
                         <h2 className="text-lg md:text-xl mb-2 md:mb-4 pt-4 font-bold">Chats</h2>
                         <div className="space-y-2 md:space-y-3">
                             {chats.map((chat) => (
-                                <div key={chat.id} className="flex items-center p-2 bg-purple-800 rounded hover:bg-gray-600 cursor-pointer">
+                                <div key={chat.id} className="flex items-center p-2 bg-purple-800 rounded hover:bg-purple-400 transition duration-200cursor-pointer">
                                     <img
                                         src={chat.avatar}
                                         alt={`${chat.name}'s avatar`}
                                         className="w-8 h-8 md:w-10 md:h-10 rounded-full mr-2 md:mr-3 flex-shrink-0"
                                     />
-                                    <div className="flex-1 min-w-0"> {/* Added min-w-0 to allow text truncation */}
+                                    <div className="flex-1 min-w-0">
                                         <h3 className="font-semibold text-sm md:text-base truncate">{chat.name}</h3>
                                         <p className="text-xs md:text-sm text-gray-100 truncate">{chat.lastMessage}</p>
                                     </div>
