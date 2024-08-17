@@ -55,7 +55,7 @@ const attachment: React.FC = () => {
         body: formData,
       });
 
-console.log(response)
+      console.log(response)
 
       if (!response.ok) {
         throw new Error('File upload failed');
