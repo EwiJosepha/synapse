@@ -59,7 +59,7 @@ const Sidebar = () => {
                                         alt={`${chat.name}'s avatar`}
                                         className="w-8 h-8 md:w-10 md:h-10 rounded-full mr-2 md:mr-3 flex-shrink-0"
                                     />
-                                    <div className="flex-1 min-w-0"> {/* Added min-w-0 to allow text truncation */}
+                                    <div className="flex-1 min-w-0">
                                         <h3 className="font-semibold text-sm md:text-base truncate">{chat.name}</h3>
                                         <p className="text-xs md:text-sm text-gray-100 truncate">{chat.lastMessage}</p>
                                     </div>
