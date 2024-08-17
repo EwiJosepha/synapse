@@ -94,10 +94,10 @@ const AttachmentOptions: React.FC = () => {
         <File /> Documents
       </button>
       <button onClick={handleImageClick} className="flex items-center gap-2 p-2 hover:bg-gray-200 rounded-md">
-        <Image /> Image
+        <Image /> Images
       </button>
       <button onClick={handleVideoClick} className="flex items-center gap-2 p-2 hover:bg-gray-200 rounded-md">
-        <Video /> Video
+        <Video /> Videos
       </button>
 
       {/* Hidden file inputs to select files from the machine */}
