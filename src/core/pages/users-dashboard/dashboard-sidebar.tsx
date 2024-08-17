@@ -69,7 +69,7 @@ const Sidebar = () => {
                         </div>
                         {showProfile && (
                             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                                <div className="bg-purple-800 rounded-lg w-3/4 md:w-1/2 lg:w-1/3 h-3/4 overflow-hidden flex">
+                                <div className="bg-purple-800 rounded-lg w-3/4 md:w-1/2 lg:w-2/3 h-4/4 overflow-hidden flex">
                                     <UserSlideBar onRouteClick={handleRouteClick} />
                                     <div className="flex-1 p-4 overflow-y-auto">
                                         {currentRoute === '/usersProfile/account-details' && <AccountDetails />}
