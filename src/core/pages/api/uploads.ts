@@ -16,8 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (err) {
       return res.status(500).json({ error: 'File parsing error' });
     }
-    console.log('Parsed files:', files);
-    
+
     const file = files.file as unknown as formidable.File;
 
     if (!file) {
@@ -25,9 +24,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     try {
+      // Upload to a specific folder in Cloudinary
       const result = await cloudinary.uploader.upload(file.filepath, {
-        resource_type: 'auto',
+        resource_type: 'auto', // Automatically detect the resource type
+        folder: 'chat-resources',
       });
+
       return res.status(200).json({ url: result.secure_url });
     } catch (error) {
       console.error('Cloudinary upload error:', error);
