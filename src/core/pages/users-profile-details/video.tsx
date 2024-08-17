@@ -1,5 +1,4 @@
 "use client"
-import { Camera } from 'lucide-react';
 import React, { useRef } from 'react';
 
 const WebcamComponent = () => {
