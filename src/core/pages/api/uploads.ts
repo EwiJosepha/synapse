@@ -35,7 +35,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       console.error('Cloudinary upload error:', error);
       return res.status(500).json({ error: 'Cloudinary upload failed' });
     } finally {
-      fs.unlinkSync(file.filepath); // Cleanup the temporary filess
+      fs.unlinkSync(file.filepath); // Cleanup the temporary filessssss
     }
   });
 };
