@@ -16,7 +16,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (err) {
       return res.status(500).json({ error: 'File parsing error' });
     }
-
+    console.log('Parsed files:', files);
+    
     const file = files.file as unknown as formidable.File;
 
     if (!file) {
