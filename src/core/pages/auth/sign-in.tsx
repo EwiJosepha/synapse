@@ -1,10 +1,9 @@
-"use client"
 import React, { useState } from 'react';
+import RegisterForm from './sign-up';
+import { loginUrl } from '@/providers/constants/constants';
 import { jwtDecode } from 'jwt-decode';
-import LoginForm from './sign-in';
-import { signupUrl } from '@/providers/constants/constants';
 
-const RegistrationForm = () => {
+const LoginForm = () => {
   const [values, setValues] = useState({
     name: '',
     email: '',
@@ -33,7 +32,7 @@ const RegistrationForm = () => {
   const handleRegister = async (e: any,) => {
     e.preventDefault()
     setIsLoading(true)
-    const res = await fetch(signupUrl, {
+    const res = await fetch(loginUrl, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -41,7 +40,6 @@ const RegistrationForm = () => {
       },
       body: JSON.stringify(values)
     })
-
     const badrequest = res.status === 400
     const goodreq = res.status === 201
     setBadreq(badrequest)
@@ -66,22 +64,8 @@ const RegistrationForm = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       {!opensignUp ? (
         <div className="bg-white shadow-md rounded-lg p-8 w-96">
-          <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+          <h2 className="text-2xl font-bold mb-6 text-center">Log In</h2>
           <form>
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name='name'
-                value={values.name}
-                onChange={HandleValues}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-purple-500"
-                required
-              />
-            </div>
             <div className="mb-4">
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email
@@ -96,20 +80,7 @@ const RegistrationForm = () => {
                 required
               />
             </div>
-            <div className="mb-4">
-              <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
-                Phone Number
-              </label>
-              <input
-                type="text"
-                id="phoneNumber"
-                name='phoneNumber'
-                value={values.phoneNumber}
-                onChange={HandleValues}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-purple-500"
-                required
-              />
-            </div>
+          
             <div className="mb-4">
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
@@ -124,26 +95,26 @@ const RegistrationForm = () => {
                 required
               />
             </div>
-              <button
-                type="submit"
-                className="w-full bg-purple-500 text-white font-semibold py-2 rounded-md hover:bg-purple-600 transition duration-200"
-                onClick={handleRegister}
-              >
-                {opensignUp ? "Login" : "Sign Up"}
-              </button>
-             
+
+            <button
+              type="submit"
+              className="w-full bg-purple-500 text-white font-semibold py-2 rounded-md hover:bg-purple-600 transition duration-200"
+              onClick={handleRegister}
+            >
+              Login
+            </button>
             <div className='pt-5'>
               <span className='font-bold underline text-purple-800 cursor-pointer' onClick={opensignUpForm}>
-                Already have an account? login
+                Don't have an account? Sign Up
               </span>
             </div>
           </form>
         </div>
       ) : (
-        <LoginForm />
+        <RegisterForm />
       )}
     </div>
   );
 };
 
-export default RegistrationForm
+export default LoginForm;
