@@ -1,8 +1,8 @@
 // components/DashboardLayout.js
 import React from 'react';
-import Sidebar from "../../core/pages/users-dashboard/dashboard-sidebar"
-import Header from '../../core/pages/users-dashboard/hearder';
-import Main from '../../core/pages/users-dashboard/main-chat-sec';
+import Sidebar from "../../pages/users-dashboard/dashboard-sidebar"
+import Header from '../../pages/users-dashboard/hearder';
+import Main from '../../pages/users-dashboard/main-chat-sec';
 
 const DashboardLayout = () => {
     return (

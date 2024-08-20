@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import { File, Image, Video } from 'lucide-react';
 
+
 const AttachmentOptions: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const imageInputRef = useRef<HTMLInputElement | null>(null);
@@ -49,20 +50,17 @@ const AttachmentOptions: React.FC = () => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('type', type);
-
+  
     try {
       const response = await fetch('/api/uploads', {
         method: 'POST',
         body: formData,
       });
-
-      console.log(response);
-
+  
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`File upload failed: ${errorText}`);
+        throw new Error('File upload failed');
       }
-
+  
       const data = await response.json();
       return data.url;
     } catch (error) {
@@ -70,7 +68,7 @@ const AttachmentOptions: React.FC = () => {
       return null;
     }
   };
-
+  
   const addFileToChat = (url: string, type: string) => {
     const chatContainer = document.getElementById('chat-container');
     if (chatContainer) {

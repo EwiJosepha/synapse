@@ -1,4 +1,4 @@
-import PersonalisedColors from '@/core/pages/users-profile-details/personalise'
+import PersonalisedColors from '@/pages/users-profile-details/personalise'
 import React from 'react'
 
 function PersonaliseWallpaper() {
