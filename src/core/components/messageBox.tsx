@@ -1,11 +1,19 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import MessageList from './messageList';
 import MessageInput from './messageInput';
 import EmojiPicker from './emojiPicker';
 import AttachmentOptions from './attachment';
-import { Message } from '@/lib/validations/messages';
+// import { Message } from '@/lib/validations/messages';
+
+interface Message {
+  id: number;
+  text: string;
+  timestamp: number;
+  emoji: string;
+  imageUrl: string;
+};
 
 const MessageBox: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -14,12 +22,17 @@ const MessageBox: React.FC = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [showAttachmentOptions, setShowAttachmentOptions] = useState(false);
 
+
   const handleSendMessage = () => {
     if (newMessage.trim()) {
-      setMessages([
-        ...messages,
-        { id: messages.length, text: `${newMessage.trim()} ${newEmoji ?? ''}`, emoji: newEmoji },
-      ]);
+      const newMessageItem: Message = {
+        id: Date.now(), // Use the current timestamp as the unique identifier
+        text: `${newMessage.trim()} ${newEmoji ?? ''}`,
+        emoji: newEmoji,
+        timestamp: 0,
+        imageUrl: ''
+      };
+      setMessages([...messages, newMessageItem]);
       setNewMessage('');
       setNewEmoji("");
     }
@@ -29,6 +42,7 @@ const MessageBox: React.FC = () => {
     setNewMessage(newMessage.trim() + ' ' + emoji);
     setNewEmoji(emoji);
     setShowEmojiPicker(false);
+    setNewEmoji(''); // Clear the newEmoji state
   };
 
   return (

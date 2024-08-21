@@ -20,6 +20,9 @@ const emojiList = [
 ];
 
 const EmojiPicker: React.FC<EmojiPickerProps> = ({ handleEmojiClick }) => {
+
+
+  
   return (
     <div className="absolute bottom-[70px] left-[20px] bg-gray-200 shadow-lg rounded-md p-2 z-10 grid grid-cols-5 gap-1 max-w-[300px] max-h-[200px] overflow-y-auto">
       {emojiList.map((emoji, index) => (

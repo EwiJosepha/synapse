@@ -1,4 +1,3 @@
-// MessageInput.tsx
 import React from 'react';
 import { Smile, Plus, SendHorizonal, Mic } from 'lucide-react';
 
@@ -42,7 +41,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type your message..."
-          className="w-full resize-none rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-purple-500"
+          className="w-full resize-none rounded-md border border-gray-300 pr-1 pl-3 pt-4 mr-1 ml-1 focus:outline-none focus:ring focus:ring-purple-500"
         />
       </form>
 
