@@ -1,4 +1,4 @@
-import Notifications from '@/core/pages/users-profile-details/notification'
+import Notifications from '../../../../core/pages/users-profile-details/notification'
 import React from 'react'
 
 function Notify() {

@@ -1,4 +1,4 @@
-import AccountDetails from '@/core/pages/users-profile-details/account'
+import AccountDetails from '../../../../core/pages/users-profile-details/account'
 import React from 'react'
 
 function AccDetails() {

@@ -1,4 +1,4 @@
-import MessageBox from '@/core/components/organisms/messageBox'
+import MessageBox from '@/core/components/messageBox'
 import React from 'react'
 
 function msgBox() {

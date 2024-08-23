@@ -1,4 +1,4 @@
-import WebcamComponent from '@/core/pages/users-profile-details/video'
+import WebcamComponent from '../../../../core/pages/users-profile-details/video'
 import React from 'react'
 
 function Video() {

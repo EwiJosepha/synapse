@@ -1,4 +1,4 @@
-import General from '@/core/pages/users-profile-details/general'
+import General from '../../../../core/pages/users-profile-details/general'
 import React from 'react'
 import UsersProfile from '../page'
 
