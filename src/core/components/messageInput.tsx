@@ -80,7 +80,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
         const newConversationId = sendConversation.id;
         newMessages.conversationId = newConversationId;
         newMessages.conversationId = newConversationId || "";
-        console.log(newConversationId, "converstionId")
+        console.log(newConversationId, "conversationId")
 
         console.log({ newMessages }, "body");
 
@@ -133,7 +133,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type your message..."
-          className="w-[100%] resize-none rounded-lg border border-gray-300 focus:outline-none focus:ring focus:ring-purple-500"
+          className="w-[100%] resize-none rounded-lg border border-gray-300 pr-3 pl-3 pt-3 focus:outline-none focus:ring focus:ring-purple-500"
         />
       </form>
 

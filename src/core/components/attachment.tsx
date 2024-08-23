@@ -89,7 +89,7 @@ const AttachmentOptions: React.FC = () => {
   };
 
   return (
-    <div className="absolute bottom-[60px] left-0 bg-gray-210 shadow-lg rounded-md p-2 z-10 flex flex-col gap-2 sm:bottom-[60px] sm:p-3 md:bottom-[70px] md:p-4 lg:bottom-[80px] lg:p-5">
+    <div className="absolute bottom-[60px] left-0 bg-gray-200 shadow-lg rounded-md p-2 z-10 flex flex-col gap-2 sm:bottom-[60px] sm:p-3 md:bottom-[70px] md:p-4 lg:bottom-[80px] lg:p-5">
       <button onClick={handleFileClick} className="flex items-center gap-2 p-2 hover:bg-gray-200 rounded-md">
         <File /> Documents
       </button>

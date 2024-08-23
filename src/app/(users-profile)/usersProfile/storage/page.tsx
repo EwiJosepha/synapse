@@ -1,4 +1,4 @@
-import StorageSys from '@/core/pages/users-profile-details/storage'
+import StorageSys from '../../../../core/pages/users-profile-details/storage'
 import React from 'react'
 
 function Storage() {

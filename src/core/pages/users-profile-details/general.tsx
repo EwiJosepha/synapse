@@ -1,5 +1,5 @@
 import { Edit, Edit2 } from "lucide-react";
-import pp  from "../../../../public/mew pp.jpg"
+import pp from "../../../../public/mew pp.jpg"
 import Image from "next/image";
 
 export default function General() {

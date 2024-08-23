@@ -1,6 +1,6 @@
 
 "use client"
-import MessageBox from '@/core/components/organisms/messageBox';
+import MessageBox from '@/core/components/messageBox';
 import { useAppContext } from '@/providers/context/app-context';
 import React from 'react';
 

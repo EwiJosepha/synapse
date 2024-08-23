@@ -1,4 +1,4 @@
-import LoginForm from '@/core/pages/auth/sign-up'
+import LoginForm from '../../core/pages/auth/sign-up'
 import React from 'react'
 
 function Auth() {

@@ -3,7 +3,7 @@ import React from 'react';
 import Sidebar from "../../core/pages/users-dashboard/dashboard-sidebar"
 import Header from '../../core/pages/users-dashboard/hearder';
 import Main from '../../core/pages/users-dashboard/main-chat-sec';
-import MessageBox from '@/core/components/organisms/messageBox';
+import MessageBox from '@/core/components/messageBox';
 
 const DashboardLayout = () => {
     return (
