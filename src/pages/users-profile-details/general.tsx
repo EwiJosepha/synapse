@@ -1,5 +1,5 @@
 import { Edit, Edit2 } from "lucide-react";
-import pp  from "../../../../public/mew pp.jpg"
+// import pp  from "../../../../public/mew pp.jpg"
 import Image from "next/image";
 
 export default function General() {
@@ -8,7 +8,7 @@ export default function General() {
        <h1 className="text-2xl text-center text-white">Profile Page</h1> 
         <div className="flex flex-col gap-4 border-b border-b-gray-400">
           <div className=" w-20 h-20 pl-3">
-            <Image src={pp} alt="profile"  width={50} height={50} className="rounded-full"/>
+            <Image src={""} alt="profile"  width={50} height={50} className="rounded-full"/>
           </div>
           <div className="p-2 flex flex-col  gap-4 pb-8">
             <div className="flex justify-between items-center cursor-pointer text-white">
@@ -30,7 +30,5 @@ export default function General() {
           <p className="pl-3 text-white">Chat will be cleared when you logout</p>
         </div>
       </div>
-
-
   );
 }
