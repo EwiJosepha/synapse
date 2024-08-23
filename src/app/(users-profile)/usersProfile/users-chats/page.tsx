@@ -9,4 +9,4 @@ function UsersChat() {
   )
 }
 
-export default UsersChat
+export default Chats

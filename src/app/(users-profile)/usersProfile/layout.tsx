@@ -1,17 +1,18 @@
+"use client"
 import React, { ReactNode } from 'react';
+import UserSlideBar from '@/core/components/organisms/users-sidebar';
 
-// interface UserProfileLayoutProps {
-//   children: ReactNode;
-//   handleRouteClick: (href: string) => void;
-// }
+interface UserProfileLayoutProps {
+  children: ReactNode;
+}
+const UserProfileLayout: React.FC<UserProfileLayoutProps> = ({ children }) => {
 
-const UserProfileLayout = () => {
   return (
-    <div className="w-[90%] md:w-[40%] xl:w-[30%]">
-      <div className="grid grid-cols-2 bg-purple-500 rounded-lg">
-        {/* <UserSlideBar onRouteClick={handleRouteClick} />
-        <div>{children}</div> */}
-      </div>
+    <div className="flex  w-96 bg-gradient-to-r from-blue-500 via-pink-500 to-violet-500">
+      <UserSlideBar onRouteClick={function (href: string): void {
+        throw new Error('Function not implemented.');
+      } } />
+      <div className="flex-1">{children}</div>
     </div>
   );
 };
