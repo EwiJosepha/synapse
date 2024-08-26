@@ -7,5 +7,7 @@ export type MessageSchema = {
   conversationId : string,
   reactions: string[],
   attachments: string[]
+  emoji: string,
+  timestamp: number, 
 
 }
