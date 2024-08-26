@@ -12,7 +12,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link'; // Import Link component for navigation
-import img from '../../public/image img.png';
 
 export default function Home() {
 
@@ -33,7 +32,7 @@ export default function Home() {
         </p>
 
         <Image
-          src={img}          
+          src=""         
           alt="Chat illustration"
           width={400}
           height={300}
