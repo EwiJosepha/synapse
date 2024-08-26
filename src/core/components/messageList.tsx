@@ -4,20 +4,25 @@ import React, { useEffect, useState } from 'react';
 // import ChatMessage from './chatMessage';
 
 interface Message {
-  id: number;
-  text: string;
+  // id: number;
+  content: string; // Use 'content' instead of 'text'
   emoji: string | null;
+  receiverId :string | null,
+  senderId: string | null,
+  conversationId : string,
+  reactions: string[],
+  attachments: string[]
 }
 
-interface MessageListProps {
-  messages: Message[];
-}
+// interface MessageListProps {
+//   messages: Message[];
+// }
 
 interface ContentMessages {
   content: string[]
 }
 
-const MessageList: React.FC<MessageListProps> = ({ messages }) => {
+const MessageList: React.FC<{ messages: Message[] }> = ({ messages }) => {
   const { userMessages, setUserMessages } = useAppContext()
   const [contentMessages, setContentMessages] = useState<ContentMessages>()
 
@@ -26,7 +31,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
       const userMessageContents = userMessages.map(message => message.content);
       const messageContents = userMessages.map(message => message.content);
       setContentMessages({ content: messageContents });
-      const initialContents = messages.map(message => message.text);
+      const initialContents = messages.map(message => message.content);
       // setContentMessages({ content: [...initialContents, ...userMessageContents] });
     }
   }, [userMessages, messages]);
