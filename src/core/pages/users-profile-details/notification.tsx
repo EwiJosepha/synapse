@@ -66,25 +66,25 @@ function Notifications() {
           <div className='flex text-white h-6 justify-between pr-3'>
             <p>Messages</p>
 
-            <Theme>
+            {/* <Theme>
               <Switch defaultChecked />
-            </Theme>
+            </Theme> */}
 
           </div>
           <div className='flex text-white h-6 justify-between pr-3'>
             <p>calls</p>
 
-            <Theme>
+            {/* <Theme>
               <Switch defaultChecked />
-            </Theme>
+            </Theme> */}
 
           </div>
           <div className='flex text-white h-6 justify-between  pr-3'>
             <p>Media Preview</p>
 
-            <Theme>
+            {/* <Theme>
               <Switch defaultChecked />
-            </Theme>
+            </Theme> */}
 
           </div>
         </div>

@@ -45,22 +45,22 @@ function PersonalisedColors() {
     <div className='pl-4 flex flex-col gap-3'>
       <h1 className='md:text-sm  text-white pb-2 pt-5 pr-2'>Personalize your Wallpaper by clicking the buttons</h1>
       <div className='w-[90%] bg-white border-2 border-b-gray-500 grid grid-cols-3 cursor-pointer gap-1 text-sm'>
-        <button style={{ background: "#D291B0" }} className='py-4 rounded-sm text-white' onClick={handleMate}>
+        <button style={{ background: "#D291B0" }} className='py-6 rounded-sm text-white' onClick={handleMate}>
          Mate
         </button>
-        <button style={{ background: "#DF78FC" }} className='py-4 rounded-sm  text-white' onClick={handlepurple}>
+        <button style={{ background: "#DF78FC" }} className='py-6 rounded-sm  text-white' onClick={handlepurple}>
           Purple
         </button>
-        <button style={{ background: `#FB48F0` }} className='py-4 rounded-sm  text-white' onClick={handlepink}>
+        <button style={{ background: `#FB48F0` }} className='py-6 rounded-sm  text-white' onClick={handlepink}>
           Pink
         </button>
-        <button style={{ background: "#AD6CCC" }} className='py-4 rounded-sm  text-white' onClick={handlegreen}>
+        <button style={{ background: "#AD6CCC" }} className='py-6 rounded-sm  text-white' onClick={handlegreen}>
          D-Purple
         </button>
-        <button style={{ background: "#D0A3EB" }} className='py-4 rounded-sm  text-white' onClick={handleYellow}>
+        <button style={{ background: "#D0A3EB" }} className='py-6 rounded-sm  text-white' onClick={handleYellow}>
           L-Purple
         </button>
-        <button style={{ background: "#F6F4EF" }} className='py-4 rounded-sm  text-white' onClick={handleCream}>
+        <button style={{ background: "#F6F4EF" }} className='py-6 rounded-sm  text-white' onClick={handleCream}>
           Cream
         </button>
       </div>
