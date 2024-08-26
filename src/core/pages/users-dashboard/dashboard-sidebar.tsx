@@ -104,7 +104,7 @@ const Sidebar = () => {
                     <div className="p-2 md:p-4">
                         <h2 className="text-lg md:text-xl mb-2 md:mb-4 pt-4 font-bold">Chats</h2>
                         <div className="space-y-2 md:space-y-3">
-                            {users?.map((user) => (
+                            {users?.slice(0, 6).map((user) => (
                                 <div key={user.id} className="flex items-center p-2 bg-purple-800 rounded hover:bg-purple-400 transition duration-200cursor-pointer" onClick={() => handleUserClick(user.id)} >
                                     <img
                                         src={""}
