@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Smile, Plus, SendHorizonal, Mic } from 'lucide-react';
 import { MessageSchema } from '@/lib/interfaces/message';
