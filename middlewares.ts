@@ -19,6 +19,6 @@ export default function middleware(req: NextRequest) {
   }
 
   if(verify1 && url === "http://localhost:3001/register") {
-    return NextResponse.redirect("http://localhost:3000/login")
+    return NextResponse.redirect("http://localhost:3001/login")
   }
 }

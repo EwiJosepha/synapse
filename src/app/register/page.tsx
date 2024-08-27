@@ -1,10 +1,11 @@
 "use client"
 import React, { useState } from 'react';
-import { jwtDecode } from 'jwt-decode';
-import { baseUrl, signupUrl } from '@/providers/constants/constants';
+import { baseUrlF, signupUrl } from '@/providers/constants/constants';
 import { useRouter } from 'next/navigation';
 import Spinner from '@/core/components/molecules/spinners';
 import Link from 'next/link';
+import Toast from '@/core/components/molecules/toast';
+import { toast } from 'react-toastify';
 
 const RegistrationForm = () => {
   const router = useRouter()
@@ -14,13 +15,16 @@ const RegistrationForm = () => {
     phoneNumber: '',
     password: '',
   });
+
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    phoneNumber: '',
+    password: '',
+  });
+  const notify = () => toast.success("Registration successful")
+  const failed = () => toast.warn("Registration Failed")
   const [isLoading, setIsLoading] = useState(false)
-  const [redirected, setRedirected] = useState(Boolean)
-  const [succesful, setSuccesful] = useState(Boolean)
-  const [badreq, setBadreq] = useState(Boolean)
-  const [opensignUp, setOpensignUp] = useState(false);
-
-
 
   function HandleValues(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -30,9 +34,53 @@ const RegistrationForm = () => {
     }));
   }
 
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {
+      name: '',
+      email: '',
+      phoneNumber: '',
+      password: '',
+    };
+
+    if (!values.name.trim()) {
+      newErrors.name = 'Name is required';
+      isValid = false;
+    }
+
+    if (!values.email.trim()) {
+      newErrors.email = 'Email is required';
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+      newErrors.email = 'Email is invalid';
+      isValid = false;
+    }
+
+    if (!values.phoneNumber.trim()) {
+      newErrors.phoneNumber = 'Phone number is required';
+      isValid = false;
+    }
+
+    if (!values.password.trim()) {
+      newErrors.password = 'Password is required';
+      isValid = false;
+    } else if (values.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters long';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+
   const handleRegister = async (e: any,) => {
     e.preventDefault()
-    setIsLoading(true)
+    if (!validateForm()) {
+      return
+    }
+
+    setIsLoading(false)
     const res = await fetch(signupUrl, {
       method: "POST",
       mode: "cors",
@@ -41,27 +89,18 @@ const RegistrationForm = () => {
       },
       body: JSON.stringify(values)
     })
-
-    const badrequest = res.status === 400
-    const goodreq = res.status === 201
-    setBadreq(badrequest)
-    setIsLoading(false)
-    setSuccesful(goodreq)
-
-
-    if (goodreq) {
-      const response = await res.json().then((data) => data).then((message) => message);
-      const token = response.message;
-      const decoded = jwtDecode(token);
-
-      console.log(decoded);
+    const response = await res.json();
+    if (response) {
+      const token = response.data;
       if (typeof localStorage !== "undefined") {
-        localStorage.setItem("decoded", JSON.stringify(decoded))
+        localStorage.setItem("token", token)
       }
-      setIsLoading(false)
-      router.push(baseUrl + '/dashboard')
-      console.log(router);
-
+      setIsLoading(true)
+      notify()
+      router.push(baseUrlF + '/dashboard')
+    } else {
+      failed()
+      return "Failed to register"
     }
   }
 
@@ -84,6 +123,8 @@ const RegistrationForm = () => {
               className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-purple-500"
               required
             />
+            {errors.name && <p className="error-message text-red-500">{errors.name}</p>}
+
           </div>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -98,6 +139,8 @@ const RegistrationForm = () => {
               className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-purple-500"
               required
             />
+            {errors.email && <p className="error-message text-red-500">{errors.email}</p>}
+
           </div>
           <div className="mb-4">
             <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
@@ -112,6 +155,8 @@ const RegistrationForm = () => {
               className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-purple-500"
               required
             />
+            {errors.phoneNumber && <p className="error-message text-red-500">{errors.phoneNumber}</p>}
+
           </div>
           <div className="mb-4">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
@@ -126,15 +171,17 @@ const RegistrationForm = () => {
               className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-purple-500"
               required
             />
+            {errors.password && <p className="error-message text-red-500">{errors.password}</p>}
+
           </div>
           <button
-            // disabled={isLoading}
+            disabled={isLoading}
             type="submit"
-            className="w-full bg-purple-500 text-white font-semibold py-2 rounded-md hover:bg-purple-600 transition duration-200"
+            className=" disabled:bg-slate-400 disabled:hover:cursor-wait w-full bg-purple-500 text-white font-semibold py-2 rounded-md hover:bg-purple-600 transition duration-200"
             onClick={handleRegister}
           >
-            SignUp
-            {isLoading ? <Spinner /> : ""}
+
+            {isLoading ? <Spinner /> : " SignUp"}
 
 
           </button>
@@ -146,7 +193,7 @@ const RegistrationForm = () => {
           </p>
         </form>
       </div>
-
+      <Toast />
     </div>
   );
 };

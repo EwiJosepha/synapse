@@ -1,26 +1,49 @@
 "use client"
 import React, { useState } from 'react';
-import { baseUrl, loginUrl } from '@/providers/constants/constants';
-import { jwtDecode } from 'jwt-decode';
+import { baseUrlF, loginUrl } from '@/providers/constants/constants';
 import { useRouter } from 'next/navigation';
 import Spinner from '@/core/components/molecules/spinners';
 import Link from 'next/link';
+import Toast from '@/core/components/molecules/toast';
+import { toast } from 'react-toastify';
+
 
 const LoginForm = () => {
   const router = useRouter();
-
   const [values, setValues] = useState({
     email: '',
     password: '',
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [redirected, setRedirected] = useState(false);
-  const [successful, setSuccessful] = useState(false);
-  const [badReq, setBadReq] = useState(false);
-  const [openSignUp, setOpenSignUp] = useState(false);
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+  });
 
-  function openSignUpForm() {
-    setOpenSignUp((prev) => !prev);
+  const [isLoading, setIsLoading] = useState(false);
+  const notify = () => toast.success("Registration successful")
+  const failed = () => toast.warn("Registration Failed")
+
+  const validateForm = () => {
+    let isValid = true;
+    const newError = {
+      email: "",
+      password: ""
+    }
+
+    if (!values.password.trim()) {
+      isValid = false
+      newError.password = "Password is required"
+    } else if (values.password.length < 2) {
+      newError.password = 'Password must be at least 2 characters long';
+      isValid = false;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(values.email)) {
+      newError.email = 'Email is invalid';
+      isValid = false;
+    }
+    setErrors(newError)
+    return isValid
   }
 
   function handleValues(e: React.ChangeEvent<HTMLInputElement>) {
@@ -33,6 +56,9 @@ const LoginForm = () => {
 
   const handleRegister = async (e: any) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return
+    }
     setIsLoading(true);
     const res = await fetch(loginUrl, {
       method: 'POST',
@@ -42,25 +68,27 @@ const LoginForm = () => {
       },
       body: JSON.stringify(values),
     });
-    const badRequest = res.status === 400;
-    const goodRequest = res.status === 201;
-    setBadReq(badRequest);
+
     setIsLoading(false);
-    setSuccessful(goodRequest);
 
-    if (goodRequest) {
-      const response = await res.json().then((data) => data).then((message) => message);
-      const token = response.message;
-      const decoded = jwtDecode(token);
-
-      console.log(decoded);
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem('decoded', JSON.stringify(decoded));
+    const response = await res.json()
+    const data = response.data
+    if (data !== null) {
+      const token = response.data;
+      if (typeof localStorage !== "undefined") {
+        localStorage.setItem("token", token)
       }
-      setIsLoading(true);
-      router.push(baseUrl + '/dashboard');
-      setRedirected(true);
+      setIsLoading(true)
+      notify()
+      router.push(baseUrlF + '/dashboard')
     }
+    
+    if(data === null) {
+      setErrors({email:"Email not Found", password:"Wrong Password"})
+      failed()
+      return "Failed to register"
+    }
+
   };
 
   return (
@@ -82,6 +110,7 @@ const LoginForm = () => {
               className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-purple-500"
               required
             />
+            {errors.email && <p className="error-message text-red-500">{errors.email}</p>}
           </div>
 
           <div className="mb-4">
@@ -97,30 +126,28 @@ const LoginForm = () => {
               className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-purple-500"
               required
             />
+            {errors.password && <p className="error-message text-red-500">{errors.password}</p>}
+
           </div>
 
           <button
             disabled={isLoading}
             type="submit"
-            className="w-full bg-purple-500 text-white font-semibold py-2 rounded-md hover:bg-purple-600 transition duration-200"
+            className=" disabled:bg-slate-400 disabled:hover:cursor-wait w-full bg-purple-500 text-white font-semibold py-2 rounded-md hover:bg-purple-600 transition duration-200"
             onClick={handleRegister}
           >
             {isLoading ? <Spinner /> : 'Login'}
           </button>
-          {badReq && (
-            <div className="mt-4 text-red-500 text-sm">
-              Invalid email or password. Please try again.
-            </div>
-          )}
         </form>
         <p className="text-sm text-gray-800 mt-4">
-        Don't have an account?{' '}
-        <Link href="/register" className="text-blue-500 hover:text-blue-600">
-          Register
-        </Link>
-      </p>
+          Don't have an account?{' '}
+          <Link href="/register" className="text-blue-500 hover:text-blue-600">
+            Register
+          </Link>
+        </p>
       </div>
-  
+      <Toast />
+
     </div>
   );
 };
