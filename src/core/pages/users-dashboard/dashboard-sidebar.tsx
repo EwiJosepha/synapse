@@ -17,6 +17,8 @@ import axios from 'axios';
 import { usersUrl } from '@/providers/constants/constants';
 import { useAppContext } from '@/providers/context/app-context';
 import { Message } from '@/providers/context/app-context';
+import { baseUrl, currentUser } from "@/providers/constants/constants";
+import { fetchCurrentUser } from '../../../../utils/currentUser';
 // interface Message {
 //     id: number;
 //     text: string;
@@ -28,36 +30,42 @@ type Users = {
     name: string,
     phoneNumber: string,
     email: string,
-    sendMessages: Message[] ,
+    sendMessages: Message[],
     conversationAaUser1: string,
     conversationAsUser2: string
 }
 
-
 const Sidebar = () => {
-    const{ userMessages, setUserMessages} = useAppContext()
-    const { setMessageTo} = useAppContext()
+    const { userMessages, setUserMessages } = useAppContext()
+    const { setMessageTo } = useAppContext()
     const [showProfile, setShowProfile] = useState(false)
     const [currentRoute, setCurrentRoute] = useState('/')
     const [users, setUsers] = useState<Users[]>([])
-    const [selectedUser, setSelectedUser] = useState<Users| null>(null)
+    const [selectedUser, setSelectedUser] = useState<Users | null>(null)
 
 
-    console.log({users});
-    
+    console.log({ users });
+
 
     useEffect(() => {
+
+        const fnCurrentUser = async () => {
+            const currentUser = await fetchCurrentUser()
+            console.log(currentUser, "this is the");
+        }
+
         const fetchMessages = async () => {
-          try {
-            const response = await axios.get(usersUrl);            
-            setUsers(response.data);
-          } catch (error) {
-            console.error("Error fetching messages:", error);
-          }
+            try {
+                const response = await axios.get(usersUrl);
+                setUsers(response.data);
+            } catch (error) {
+                console.error("Error fetching messages:", error);
+            }
         };
-    
+
         fetchMessages();
-      }, []);
+        fnCurrentUser()
+    }, []);
 
     const handleRouteClick = (href: string) => {
         setCurrentRoute(href)
@@ -81,9 +89,9 @@ const Sidebar = () => {
             } else {
                 console.error("userMessagess is not an array:", userMessagess);
             }
-        }        
-        
-    };    
+        }
+
+    };
 
     return (
         <div className="flex flex-col h-full bg-purple-500 text-white rounded-tr-lg rounded-br-lg cursor-pointer ">
