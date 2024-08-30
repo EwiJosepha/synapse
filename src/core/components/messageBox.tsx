@@ -35,7 +35,7 @@
 //         emoji: newEmoji,
 //         timestamp: Date.now()
 //       };
-      
+
 //       // Update the messages state directly
 //       setMessages([...messages, newMessageItem]);
 //       setNewMessage('');
@@ -195,9 +195,10 @@ const MessageBox: React.FC = () => {
   }, [conversationId]);
 
   return (
-    <div className="bg-white shadow-md rounded-md p-4 relative h-screen flex flex-col sm:p-6 md:p-8">
-      <h2 className="text-xl font-bold mb-4 md:text-2xl md:mb-6">Message Box</h2>
+    <div className="bg-white shadow-md rounded-md p-4 max-h-screen flex flex-col sm:p-6 md:p-8">
+      <h2 className="text-xl font-bold mb-4 md:text-2xl md:mb-6 pt-14">Message Box</h2>
       <MessageList messages={messages} /> 
+      
       <MessageInput
         newMessage={newMessage}
         setNewMessage={setNewMessage}

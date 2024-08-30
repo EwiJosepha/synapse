@@ -1,4 +1,5 @@
 "use client"
+
 import { useState, createContext, Dispatch, SetStateAction, useContext, useEffect } from "react"
 import { io } from "socket.io-client"
 import { baseUrl } from "../constants/constants"
@@ -11,9 +12,6 @@ import { baseUrl } from "../constants/constants"
   timestamp: Date;
   isRead: boolean;
   conversationId: string;
-  // status: MessageStatus;
-  // reactions: MessageReaction[];
-  // attachments: FileAttachment[];
   sender?: User; 
   receiver?: User;
 };
@@ -23,7 +21,7 @@ import { baseUrl } from "../constants/constants"
   phoneNumber: string,
   email: string,
   messagesSent: Message[] ,
-  conversationAaUser1: string,
+  conversationAsUser1: string,
   conversationAsUser2: string
 }
 interface AppContextTypes {
@@ -34,6 +32,7 @@ interface AppContextTypes {
   socket: ReturnType<typeof io>
   setUserMessages:Dispatch<SetStateAction<Message[] | null>>
   userMessages: Message[] | null
+  user : User | null
 }
 
 const AppContext = createContext<AppContextTypes | null>(null)
@@ -45,6 +44,8 @@ function AppContextProvider({ children }: {
   const [currentColor, setCurrentColor] = useState<string | null>(null)
   const [messageTo, setMessageTo] = useState<string | null>(null)
   const [userMessages, setUserMessages] = useState<Message[] | null>(null)
+  const [user] = useState<User | null>(null)
+
   useEffect(() => {
     socket.on('connect', () => {
       console.log('Connected to the socket server');
@@ -57,7 +58,7 @@ function AppContextProvider({ children }: {
     };
   }, []);
   return (
-    <AppContext.Provider value={{ currentColor, setCurrentColor, socket, messageTo, setMessageTo, userMessages, setUserMessages }}>
+    <AppContext.Provider value={{ currentColor, setCurrentColor, socket, messageTo, setMessageTo, userMessages, setUserMessages, user }}>
       {children}
     </AppContext.Provider>
   )

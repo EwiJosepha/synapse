@@ -30,7 +30,5 @@ export default function UsersProfile() {
           <p className="pl-3 text-white">Chat will be cleared when you logout</p>
         </div>
       </div>
-
-
   );
 }

@@ -1,3 +1,5 @@
+"use client"
+
 import { baseUrl, currentUser } from "@/providers/constants/constants";
 
 export async function fetchCurrentUser() {
@@ -20,7 +22,7 @@ export async function fetchCurrentUser() {
     if (!response.ok) {
       throw new Error(`Error: ${response.statusText}`);
     }
-    
+
     const currentUserr = await response.json();
     // const decoded = jwtDecode(token);
     // console.log(decoded, "token");
@@ -30,5 +32,3 @@ export async function fetchCurrentUser() {
     console.error('Failed to fetch current user:', error);
   }
 }
-
-

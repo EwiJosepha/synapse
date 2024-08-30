@@ -90,29 +90,28 @@ const Sidebar = () => {
                 console.error("userMessagess is not an array:", userMessagess);
             }
         }
-
     };
 
     return (
-        <div className="flex flex-col h-full bg-purple-500 text-white rounded-tr-lg rounded-br-lg cursor-pointer ">
+        <div className="flex flex-col max-h-screen bg-purple-500 text-white cursor-pointer ">
             <div className='flex h-full'>
-                <div className="flex flex-col justify-between bg-purple-800 items-center py-7 w-12 h-full rounded-tr-lg rounded-br-lg">
+                <div className="flex flex-col justify-between bg-purple-800 items-center py-7 w-12 h-full rounded-tr-lg rounded-br-lg max-h-screen fixed">
                     <div>
                         <FaHome className="mb-6 text-2xl" />
                         <FaUserFriends className="mb-6 text-2xl" />
                         <FaCog className="text-2xl" />
                     </div>
                     <div className='flex flex-col gap-6'>
-
                         <RxAvatar className="text-2xl font-bold" onClick={handleShowProfile} />
                         <LogOut className="text-2xl" />
                     </div>
                 </div>
                 <div className="flex-1 overflow-y-auto ">
                     <div className="p-2 md:p-4">
-                        <h2 className="text-lg md:text-xl mb-2 md:mb-4 pt-4 font-bold">Chats</h2>
-                        <div className="space-y-2 md:space-y-3">
-                            {users?.map((user) => (
+                        <h2 className="ml-11 text-lg md:text-xl mb-2 md:mb-4 pt-4 font-bold">Chats</h2>
+                        {/* <div className="space-y-2 md:space-y-3"> */}
+                        <div className="overflow-y-auto max-h-screen mr-2 ml-12">
+                            {/* {users?.map((user) => (
                                 <div key={user.id} className="flex items-center p-2 bg-purple-800 rounded hover:bg-purple-400 transition duration-200cursor-pointer" onClick={() => handleUserClick(user.id)} >
                                     <img
                                         src={""}
@@ -125,11 +124,62 @@ const Sidebar = () => {
                                     </div>
                                     <span className="text-xs text-gray-100 ml-1 md:ml-2 flex-shrink-0">{user.phoneNumber}</span>
                                 </div>
-                            ))}
+                            ))} */}
+
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>oooooooooooooooooooo</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>oooooooooooooooooooo</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>oooooooooooooooooooo</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
+                            <p>hhhhhhhhhhhhhhhhhhhh</p>
                         </div>
                         {showProfile && (
                             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                                <div className="bg-purple-800 rounded-lg w-3/4 md:w-1/2 lg:w-2/3 h-4/4 overflow-hidden flex">
+                                <div className="bg-purple-800 w-3/4 md:w-1/2 lg:w-2/3 h-4/4 overflow-hidden flex">
                                     <UserSlideBar onRouteClick={handleRouteClick} />
                                     <div className="flex-1 p-4 overflow-y-auto">
                                         {currentRoute === '/usersProfile/account-details' && <AccountDetails />}

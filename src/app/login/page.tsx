@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useState } from 'react';
 import { baseUrlF, loginUrl } from '@/providers/constants/constants';
 import { useRouter } from 'next/navigation';
@@ -20,8 +21,8 @@ const LoginForm = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  const notify = () => toast.success("Registration successful")
-  const failed = () => toast.warn("Registration Failed")
+  const notify = () => toast.success("Login successful")
+  const failed = () => toast.warn("Login Failed")
 
   const validateForm = () => {
     let isValid = true;
