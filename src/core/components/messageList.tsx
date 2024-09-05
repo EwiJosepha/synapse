@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { MessageSchema } from '@/lib/interfaces/message';
 import { fetchCurrentUser } from '../../../utils/currentUser';
+import { useAppContext } from '@/providers/context/app-context';
 
 const MessageList: React.FC<{ messages: MessageSchema[] }> = ({ messages }) => {
   const [currentId, setCurrentId] = useState("");
+  const {userMessages} = useAppContext()
 
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -20,7 +22,7 @@ const MessageList: React.FC<{ messages: MessageSchema[] }> = ({ messages }) => {
 
   return (
     <div className="flex-2 overflow-y-auto flex flex-col space-y-4 mb-20 sm:mb-24 md:mb-28 max-w-[400px]">
-        {messages.map((msg, index) => (
+        {userMessages?.map((msg, index) => (
         <div 
           key={index} 
           className={`px-4 py-2 rounded-md sm:px-6 md:px-8 ${

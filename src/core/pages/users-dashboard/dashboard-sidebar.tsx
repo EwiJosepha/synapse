@@ -1,7 +1,7 @@
 
 "use client"
 import { LogOut, X } from 'lucide-react';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaHome, FaUserFriends, FaCog } from 'react-icons/fa';
 import { RxAvatar } from 'react-icons/rx';
 import UserSlideBar from '@/core/components/organisms/users-sidebar';
@@ -17,14 +17,7 @@ import axios from 'axios';
 import { usersUrl } from '@/providers/constants/constants';
 import { useAppContext } from '@/providers/context/app-context';
 import { Message } from '@/providers/context/app-context';
-import { baseUrl, currentUser } from "@/providers/constants/constants";
 import { fetchCurrentUser } from '../../../../utils/currentUser';
-// interface Message {
-//     id: number;
-//     text: string;
-//     emoji: string | null;
-//     conversationId: number; // Link to the conversation
-//   }
 type Users = {
     id: string
     name: string,
@@ -51,7 +44,7 @@ const Sidebar = () => {
 
         const fnCurrentUser = async () => {
             const currentUser = await fetchCurrentUser()
-            console.log(currentUser, "this is the");
+            console.log("this is the current user", currentUser);
         }
 
         const fetchMessages = async () => {
@@ -76,7 +69,6 @@ const Sidebar = () => {
     }
 
     const handleUserClick = (userId: string) => {
-        // setReceiverId(userId);
         const user = users?.find(u => u.id === userId)
         setMessageTo(userId)
 
@@ -91,6 +83,8 @@ const Sidebar = () => {
             }
         }
 
+        console.log("current users id on click", userId);
+
     };
 
     return (
@@ -103,7 +97,6 @@ const Sidebar = () => {
                         <FaCog className="text-2xl" />
                     </div>
                     <div className='flex flex-col gap-6'>
-
                         <RxAvatar className="text-2xl font-bold" onClick={handleShowProfile} />
                         <LogOut className="text-2xl" />
                     </div>
