@@ -51,6 +51,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
           user1Id: sendersId,
           user2Id: messageTo,
         };
+
         const createConversation = await fetch(conversationUrl, {
           method: "POST",
           mode: "cors",
@@ -91,19 +92,19 @@ const MessageInput: React.FC<MessageInputProps> = ({
   }
 
   return (
-    <div className="flex flex-row space-y-2 fixed bottom-0 w-[75%] pb-5 gap-3">
+    <div className="flex flex-row space-y-2 fixed bottom-0 w-[calc(100%-8px)] md:w-[calc(100%-250px)] pb-1 gap-1">
       <button
         onClick={() => setShowEmojiPicker(!showEmojiPicker)}
         className="text-black font-bold py-1 px-2 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500 sm:py-2 sm:px-3 sm:text-sm md:py-3 md:px-4 lg:py-4 lg:px-5 lg:text-lg"
       >
-        <Smile className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+        <Smile className="w-3 h-3 sm:w-2 sm:h-2 md:w-3 md:h-3 lg:w-5 lg:h-5" />
       </button>
 
       <button
         onClick={() => setShowAttachmentOptions(!showAttachmentOptions)}
         className="bg-purple-500 hover:bg-purple-300 text-white font-bold py-2 px-3 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500 sm:py-3 sm:px-4 md:py-4 md:px-5 lg:py-4 lg:px-6"
       >
-        <Plus className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+        <Plus className="w-3 h-3 sm:w-2 sm:h-2 md:w-3 md:h-3 lg:w-5 lg:h-5" />
       </button>
 
       <form className="flex flex-1 " >
@@ -120,13 +121,14 @@ const MessageInput: React.FC<MessageInputProps> = ({
           onClick={handleMsg}
           className="bg-purple-500 hover:bg-purple-300 text-white font-bold py-2 px-3 rounded-md sm:py-3 sm:px-4 md:py-4 md:px-5 lg:py-4 lg:px-6"
         >
-          <SendHorizonal className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+          <SendHorizonal className="w-3 h-3 sm:w-2 sm:h-2 md:w-3 md:h-3 lg:w-5 lg:h-5" />
+
         </button>
       ) : (
         <button
           className="bg-purple-500 hover:bg-purple-300 text-white font-bold py-2 px-3 rounded-md sm:py-3 sm:px-4 md:py-4 md:px-5 lg:py-4 lg:px-6"
         >
-          <Mic className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+          <Mic className="w-3 h-3 sm:w-2 sm:h-2 md:w-3 md:h-3 lg:w-5 lg:h-5" />
         </button>
       )}
     </div>

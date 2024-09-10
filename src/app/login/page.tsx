@@ -89,13 +89,12 @@ const LoginForm = () => {
       failed()
       return "Failed to register"
     }
-
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-purple-500">
+    <div className="flex items-center justify-center min-h-screen bg-purple-800">
 
-      <div className="bg-white shadow-md rounded-lg p-8 w-96">
+      <div className="bg-white shadow-md rounded-lg p-8 w-90 shadow-pink-500">
         <h2 className="text-2xl font-bold mb-6 text-center">Log In</h2>
         <form>
           <div className="mb-4">
@@ -134,7 +133,7 @@ const LoginForm = () => {
           <button
             disabled={isLoading}
             type="submit"
-            className=" disabled:bg-slate-400 disabled:hover:cursor-wait w-full bg-purple-500 text-white font-semibold py-2 rounded-md hover:bg-purple-600 transition duration-200"
+            className=" disabled:bg-slate-400 disabled:hover:cursor-wait w-full bg-purple-800 text-white font-semibold py-2 rounded-md hover:bg-purple-600 transition duration-200"
             onClick={handleRegister}
           >
             {isLoading ? <Spinner /> : 'Login'}
