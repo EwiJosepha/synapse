@@ -44,7 +44,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
   }, []);
 
   async function handleMsg() {
-    if (!newMessage.trim()) return; // Don't send empty messages
+    if (!newMessage.trim()) return;
 
     try {
       if (!conversationId) {
@@ -62,7 +62,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
         });
 
         if (createConversation.status === 201) {
-          const sendConversation = await createConversation.json();
+          const sendConversation = await createConversation.json();          
           setConversationId(sendConversation.id);
         } else {
           console.log("Failed to create conversation:", createConversation.status);

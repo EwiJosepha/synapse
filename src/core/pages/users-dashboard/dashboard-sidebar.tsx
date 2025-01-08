@@ -1,7 +1,7 @@
 
 "use client"
 import { LogOut, X } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FaHome, FaUserFriends, FaCog } from 'react-icons/fa';
 import { RxAvatar } from 'react-icons/rx';
 import UserSlideBar from '@/core/components/organisms/users-sidebar';
@@ -14,7 +14,7 @@ import Storage from '@/app/(users-profile)/usersProfile/storage/page';
 import Video from '@/app/(users-profile)/usersProfile/videos-voice/page';
 import UsersProfile from '@/app/(users-profile)/usersProfile/page';
 import axios from 'axios';
-import { usersUrl } from '@/providers/constants/constants';
+import { baseUrl, conversationUrl, currentUser, usersUrl } from '@/providers/constants/constants';
 import { useAppContext } from '@/providers/context/app-context';
 import { Message } from '@/providers/context/app-context';
 import { fetchCurrentUser } from '../../../../utils/currentUser';
@@ -28,23 +28,66 @@ type Users = {
     conversationAsUser2: string
 }
 
-const Sidebar = () => {
+interface SidebarProps {
+    setConversationId: React.Dispatch<React.SetStateAction<string>>;
+}
+
+
+const Sidebar: React.FC<SidebarProps> = ({ setConversationId }) => {
     const { userMessages, setUserMessages } = useAppContext()
     const { setMessageTo } = useAppContext()
     const [showProfile, setShowProfile] = useState(false)
     const [currentRoute, setCurrentRoute] = useState('/')
+    const [currentUserId, setCurrentUserId] = useState("")
     const [users, setUsers] = useState<Users[]>([])
     const [selectedUser, setSelectedUser] = useState<Users | null>(null)
 
-
-    console.log({ users });
-
+    const fetchConversation = useCallback(async (user1Id: string, user2Id: string) => {
+        console.log(`Fetching conversation for users: ${user1Id} and ${user2Id}`);
+        try {
+          const response = await axios.get(conversationUrl);
+          
+          console.log('All conversations:', response.data);
+          
+          if (response.status === 200 && Array.isArray(response.data)) {
+            const conversation = response.data.find(conv => 
+              (conv.user1Id === user1Id && conv.user2Id === user2Id) ||
+              (conv.user1Id === user2Id && conv.user2Id === user1Id)
+            );
+            
+            if (conversation) {
+              console.log("Conversation found:", conversation.id);
+              return conversation.id;
+            } else {
+              console.log("No matching conversation found");
+              return null;
+            }
+          } else {
+            console.log("Unexpected response format:", response.data);
+            return null;
+          }
+        } catch (error) {
+          console.error("Error fetching conversations:", error);
+          return null;
+        }
+      }, []);
 
     useEffect(() => {
 
         const fnCurrentUser = async () => {
-            const currentUser = await fetchCurrentUser()
-            console.log("this is the current user", currentUser);
+            try {
+                const response = await fetchCurrentUser();
+                if (response && response.data && response.data.id) {
+                  const currentUserId = response.data.id;
+                  console.log("This is the current user ID:", currentUserId);
+                  setCurrentUserId(currentUserId)
+                  return currentUserId;
+                } else {
+                  throw new Error("User ID not found in the response");
+                }
+              } catch (error) {
+                console.error("Error fetching current user:", error);
+              }
         }
 
         const fetchMessages = async () => {
@@ -68,24 +111,20 @@ const Sidebar = () => {
         setShowProfile((prevProfile) => prevProfile === false ? true : false)
     }
 
-    const handleUserClick = (userId: string) => {
-        const user = users?.find(u => u.id === userId)
-        setMessageTo(userId)
-
+    const handleUserClick = async (userId: string) => {
+        const user = users?.find(u => u.id === userId);
+        setMessageTo(userId);
+        console.log("id to", userId);
+        
+      
         if (user) {
-            setSelectedUser(user);
-            const userMessagess = user.sendMessages;
-            if (Array.isArray(userMessagess)) {
-                const messageContents = userMessagess.map(message => message.content);
-                setUserMessages(userMessagess);
-            } else {
-                console.error("userMessagess is not an array:", userMessagess);
-            }
+          setSelectedUser(user);
+          const conversationId = await fetchConversation(currentUserId, userId);
+          if (conversationId) {
+            setConversationId(conversationId);
+          }
         }
-
-        console.log("current users id on click", userId);
-
-    };
+      };
 
     return (
         <div className="flex flex-col h-full bg-purple-500 text-white rounded-tr-lg rounded-br-lg cursor-pointer ">

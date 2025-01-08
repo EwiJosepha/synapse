@@ -29,7 +29,7 @@ const Main = () => {
     return (
         <div className="flex-1 flex flex-col p-4">
             <div className={`flex-1 -100 p-4 rounded overflow-y-auto`} style={{background:currentColor || "#F5F5F5"}}>
-                <MessageBox /> 
+                {/* <MessageBox />  */}
             </div>
             {/* ... other UI elements (user list, chat controls, etc.) */}
         </div>

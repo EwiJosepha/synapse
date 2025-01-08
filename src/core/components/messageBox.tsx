@@ -13,10 +13,14 @@ import { io } from 'socket.io-client';
 import { fetchCurrentUser } from '../../../utils/currentUser';
 const socket = io(baseUrl)
 
-const MessageBox: React.FC = () => {
-  const {  messageTo } = useAppContext();
+interface MessageBoxProps {
+  conversationId: string;
+  setConversationId: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const MessageBox: React.FC<MessageBoxProps> = ({ conversationId, setConversationId }) => {
+  const {  messageTo, setUserMessages } = useAppContext();
   const [messages, setMessages] = useState<MessageSchema[]>([]);
-  const [conversationId, setConversationId] = useState('');
   const [senderId, setSendersId] = useState("")
   const [newMessage, setNewMessage] = useState('');
   const [newEmoji, setNewEmoji] = useState("");
@@ -29,8 +33,14 @@ const MessageBox: React.FC = () => {
     try {
       const response = await axios.get(`${baseUrl}/messages/conversation/${conversationId}`);
       setMessages(response.data);
+      setUserMessages(response.data)
+      console.log("conversation Id HERE", conversationId)
+
+      
     } catch (error) {
       console.error("Error fetching messages:", error);
+      console.log("conversation Id HERE", conversationId)
+
     }
   }, [conversationId]);
 
@@ -42,6 +52,10 @@ const MessageBox: React.FC = () => {
   }, [conversationId, fetchMessages]);
 
   useEffect(() => {
+    setConversationId(conversationId);
+}, [conversationId]);
+
+  useEffect(() => {
     const fnCurrentUser = async () => {
       const currentUser = await fetchCurrentUser()
      const data = currentUser?.data
@@ -50,9 +64,7 @@ const MessageBox: React.FC = () => {
     }
     fnCurrentUser()
 
-  
-    // socket.on('messageSent', ())
-  }, [])
+    }, [])
 
 
   const handleSendMessage = async () => {
@@ -71,8 +83,10 @@ const MessageBox: React.FC = () => {
       try {
         // Send the message to the server
         const response = await axios.post(messagesUrl, newMessageItem);
+
         // Update local state with the new message
         setMessages(prevMessages => [...prevMessages, response.data]);
+        // setUserMessages(prevMessages => [...prevMessages, response.data])
         setNewMessage('');
         setNewEmoji('');
       } catch (error) {
@@ -80,6 +94,7 @@ const MessageBox: React.FC = () => {
       }
     }
   };
+
 
   const handleEmojiClick = (emoji: string) => {
     setNewMessage(newMessage.trim() + ' ' + emoji);

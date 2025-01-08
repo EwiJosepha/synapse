@@ -5,7 +5,7 @@ import { useAppContext } from '@/providers/context/app-context';
 
 const MessageList: React.FC<{ messages: MessageSchema[] }> = ({ messages }) => {
   const [currentId, setCurrentId] = useState("");
-  const {userMessages} = useAppContext()
+  const {userMessages, setUserMessages} = useAppContext()
 
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -16,13 +16,14 @@ const MessageList: React.FC<{ messages: MessageSchema[] }> = ({ messages }) => {
         console.error("Error fetching current user:", error);
       }
     };
+    
 
     getCurrentUser();
   }, []);
 
   return (
     <div className="flex-2 overflow-y-auto flex flex-col space-y-4 mb-20 sm:mb-24 md:mb-28 max-w-[400px]">
-        {userMessages?.map((msg, index) => (
+        {messages?.map((msg, index) => (
         <div 
           key={index} 
           className={`px-4 py-2 rounded-md sm:px-6 md:px-8 ${
